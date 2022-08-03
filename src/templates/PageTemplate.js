@@ -79,6 +79,9 @@ export const query = graphql`
         gallery {
           altText
           formatOverride
+          customQuality
+          title
+          useSourceQuality
           image {
             url
             file {

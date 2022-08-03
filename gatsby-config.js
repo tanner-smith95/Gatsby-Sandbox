@@ -19,6 +19,8 @@ module.exports = {
         host: process.env.GATSBY_CONTENTFUL_HOST || "cdn.contentful.com",
       },
     },
+    "gatsby-plugin-image",
+    "gatsby-plugin-sharp",
     "gatsby-plugin-sass",
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",

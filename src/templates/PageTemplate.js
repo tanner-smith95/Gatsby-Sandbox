@@ -1,16 +1,14 @@
 import { graphql } from "gatsby";
 import React from "react";
+import ContentfulImage from "../components/ContentfulImage";
 
 const PageTemplate = ({ data, pageContext, location, serverData }) => {
-  console.log("data", data);
-  console.log("pageContext", pageContext);
-  console.log("location", location);
+  const pageData = data?.contentfulPage;
+
+  const gallery = pageData?.gallery;
 
   return (
     <div>
-      <h2>Dynamic Props</h2>
-      {serverData && <pre>{JSON.stringify(serverData, null, 2)}</pre>}
-
       <h2>Page Data</h2>
       <pre>{JSON.stringify(data, null, 2)}</pre>
 
@@ -19,6 +17,20 @@ const PageTemplate = ({ data, pageContext, location, serverData }) => {
 
       <h2>Page Location</h2>
       <pre>{JSON.stringify(location, null, 2)}</pre>
+
+      {/* Build the image gallery */}
+      {gallery?.length > 0 &&
+        gallery.map((image, index) => {
+          return (
+            <div key={`image-${Date.now()}-${index}`}>
+              {image?.formatOverride && <h2>{image.formatOverride}</h2>}
+              <ContentfulImage image={image} />
+            </div>
+          );
+        })}
+
+      <h2>Dynamic Props</h2>
+      {serverData && <pre>{JSON.stringify(serverData, null, 2)}</pre>}
     </div>
   );
 };
@@ -64,6 +76,18 @@ export const query = graphql`
         title
         displayTitle
         url
+        gallery {
+          altText
+          formatOverride
+          image {
+            url
+            file {
+              details {
+                size
+              }
+            }
+          }
+        }
       }
     }
   }

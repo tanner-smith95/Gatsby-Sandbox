@@ -34,6 +34,7 @@ exports.createPages = async function ({ actions, graphql }) {
     actions.createPage({
       path: fullPath,
       component: pageTemplate,
+      defer: true,
       context: {
         id: id,
         contentID: contentID,

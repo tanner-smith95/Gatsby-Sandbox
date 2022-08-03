@@ -31,5 +31,8 @@
     "react-dom": "^18.1.0",
     "react-lazy-load-image-component": "^1.5.5",
     "sass": "^1.54.0"
+  },
+  "devDependencies": {
+    "gatsby-plugin-netlify": "^5.0.1"
   }
 }
